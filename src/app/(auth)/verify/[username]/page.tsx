@@ -47,7 +47,7 @@ export default function VerifyAccount() {
       setIsSubmitting(false);
       console.error("error in sign-up of user", error);
       const axiosError = error as AxiosError<ApiResponse>;
-      let errorMessage = axiosError.response?.data.message;
+      const errorMessage = axiosError.response?.data.message;
 
       toast("sign-up failed", {
         description: errorMessage,

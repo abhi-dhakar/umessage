@@ -9,7 +9,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import messages from "@/messages.json";
-import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { ColourfulText } from "@/components/ui/colourful-text";

@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Image, Loader2, Lock, Mail } from "lucide-react";
+import { Loader2, Lock, Mail } from "lucide-react";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 
@@ -168,7 +168,7 @@ export default function SignInpage() {
             </div>
 
             <p className="text-center text-sm text-gray-500">
-              Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
               <Link
                 href="/sign-up"
                 className="text-purple-400 hover:text-purple-300 font-medium transition-colors duration-200"

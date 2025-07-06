@@ -2,9 +2,7 @@
 
 import React from "react";
 import {
-  Card,
-  CardDescription,
-  CardFooter,
+ 
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -20,7 +18,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "../ui/button";
-import { Clock, MessageSquare, Trash2, X } from "lucide-react";
+import { Clock, Trash2} from "lucide-react";
 import { Message } from "@/model/User";
 import { toast } from "sonner";
 import axios from "axios";
