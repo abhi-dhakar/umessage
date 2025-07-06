@@ -53,7 +53,7 @@ try {
 
     
 } catch (error) {
-    console.log("failed to uodate user status to accept messages")
+    console.log("failed to uodate user status to accept messages",error)
     return Response.json({
         success: false,
         message: "failed to uodate user status to accept messages"
@@ -105,8 +105,8 @@ export async function GET(_request: Request){
      })
 
    } catch (error) {
-     console.log("Error is getting acceptance status ")
-    return Response.json({
+     console.log("Error is getting acceptance status ",error)
+     return Response.json({
         success: false,
         message: "Error is getting acceptance status "
     },{
