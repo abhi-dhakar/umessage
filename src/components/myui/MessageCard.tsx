@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-import {
- 
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardHeader, CardTitle } from "@/components/ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,12 +14,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "../ui/button";
-import { Clock, Trash2} from "lucide-react";
+import { Clock, Trash2 } from "lucide-react";
 import { Message } from "@/model/User";
 import { toast } from "sonner";
 import axios from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 type MessageCardProps = {
   message: Message;
@@ -31,12 +27,13 @@ type MessageCardProps = {
 };
 
 const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
-
-  const formattedDate = format(new Date(message.createdAt), 'PPP p');
-console.log("date",formattedDate)
+  const formattedDate = format(new Date(message.createdAt), "PPP p");
+  console.log("date", formattedDate);
   const handleDeleteConfirm = async () => {
     try {
-      const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`);
+      const response = await axios.delete<ApiResponse>(
+        `/api/delete-message/${message._id}`
+      );
       toast(response.data.message);
       onMessageDelete(message._id as string);
     } catch (error) {
@@ -45,7 +42,6 @@ console.log("date",formattedDate)
   };
 
   return (
-   
     <div className="relative group -mx-4 sm:mx-0">
       <CardHeader className="space-y-4 px-4 sm:px-0">
         <div className="flex items-start">
@@ -57,7 +53,7 @@ console.log("date",formattedDate)
                 {message.content}
               </CardTitle>
             </div>
-            
+
             <div className="flex items-center gap-2 text-xs text-gray-400">
               <Clock className="w-3 h-3" />
               <span>{formattedDate}</span>
@@ -87,14 +83,16 @@ console.log("date",formattedDate)
                   <div className="space-y-2">
                     <p>Are you sure you want to delete this message?</p>
                     <div className="bg-gray-800/50 p-3 rounded-lg border border-gray-700 mt-2">
-                      <p className="text-sm text-gray-300 italic">"{message.content}"</p>
+                      <p className="text-sm text-gray-300 italic">
+                        {message.content}
+                      </p>
                     </div>
                   </div>
                 </AlertDialogDescription>
               </AlertDialogHeader>
-              
+
               <AlertDialogFooter className="mt-6 flex flex-col-reverse sm:flex-row gap-3">
-                <AlertDialogCancel 
+                <AlertDialogCancel
                   className="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 
                             text-gray-300 border-gray-700 rounded-lg 
                             px-4 py-2 text-sm"
@@ -113,11 +111,9 @@ console.log("date",formattedDate)
             </AlertDialogContent>
           </AlertDialog>
         </div>
-
       </CardHeader>
     </div>
   );
-  
 };
 
 export default MessageCard;

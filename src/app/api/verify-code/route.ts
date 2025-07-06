@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
-import { z } from "zod";
+
 import UserModel from "@/model/User";
-import { usernameValidation } from "@/schemas/signUpSchema";
+
 
 
 export async function POST(request: Request){
@@ -30,10 +30,7 @@ export async function POST(request: Request){
       const isCodeValid = user.verifyCode === code
       const isCodeNotExpired = new Date(user.verifyCodeExpiry) > new Date()
 
-    //   console.log(user.verifyCode)
-    //   console.log(code)
-    //   console.log("isvalid",isCodeValid)
-    //   console.log("iscodenotexpired",isCodeNotExpired)
+  
 
       if(isCodeValid && isCodeNotExpired){
         user.isVerified = true
