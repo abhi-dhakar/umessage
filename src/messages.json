@@ -1,0 +1,18 @@
+[
+    {
+      "title": "New Message from Alex",
+      "content": "Hey! Just wanted to check in and see how your day's going.",
+      "received": "5 minutes ago"
+    },
+    {
+      "title": "Note from SecretFriend",
+      "content": "Loved your latest post—it really made me smile!",
+      "received": "1 hour ago"
+    },
+    {
+      "title": "Chat from BookBuddy",
+      "content": "Any good books you've read lately? I'm looking for suggestions!",
+      "received": "Yesterday"
+    }
+  ]
+  
