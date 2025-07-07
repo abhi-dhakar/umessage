@@ -36,8 +36,9 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
       );
       toast(response.data.message);
       onMessageDelete(message._id as string);
-    } catch (_error) {
+    } catch (error) {
       toast("Failed to delete message");
+      console.error(error)
     }
   };
 
