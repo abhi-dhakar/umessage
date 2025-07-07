@@ -5,17 +5,15 @@ import { User } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../auth/[...nextauth]/options';
 
-type Props = {
-  params: {
-    messageid: string
-  }
-}
+type Context = {
+  params: Promise<{ messageid: string }>;
+};
 
 export async function DELETE(
   request: NextRequest,
-  { params }: Props
-) {
-  const messageId = params.messageid;
+  context: Context
+): Promise<NextResponse> {
+  const messageId = (await context.params).messageid;
 
   await dbConnect();
   const session = await getServerSession(authOptions);
