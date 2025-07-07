@@ -1,55 +1,55 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/User';
 import { User } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../auth/[...nextauth]/options';
 
-export async function DELETE(request: Request , context: { params: { messageid: string } }) {
+type Props = {
+  params: {
+    messageid: string
+  }
+}
 
-  const messageId = context.params.messageid;
+export async function DELETE(
+  request: NextRequest,
+  { params }: Props
+) {
+  const messageId = params.messageid;
 
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const user: User = session?.user as User
+  const user: User = session?.user as User;
 
   if (!session || !user) {
-    return Response.json(
+    return NextResponse.json(
       { success: false, message: 'Not authenticated' },
       { status: 401 }
     );
   }
 
   try {
-    
+    const updateResult = await UserModel.updateOne(
+      { _id: user._id },
+      { $pull: { messages: { _id: messageId } } }
+    );
 
-   const updateResult = await UserModel.updateOne(
-      {_id: user._id},
-      {$pull: {messages: {_id: messageId}}}
-    )
-
-    if(updateResult.modifiedCount == 0){
-      return Response.json(
+    if (updateResult.modifiedCount === 0) {
+      return NextResponse.json(
         { success: false, message: 'Message not found or already deleted' },
         { status: 404 }
       );
     }
 
-    return Response.json(
-      { success: true, message: 'Message  deleted' },
+    return NextResponse.json(
+      { success: true, message: 'Message deleted' },
       { status: 200 }
     );
-
-
-
   } catch (error) {
-
-    console.log("error in delete message route",error)
-    return Response.json(
+    console.log("error in delete message route", error);
+    return NextResponse.json(
       { success: false, message: 'Error deleting message' },
       { status: 500 }
     );
   }
-
- 
 }
